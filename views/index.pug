@@ -1,0 +1,43 @@
+extends base
+
+block content
+  ul.collection.with-header
+    li.collection-header
+      h4 Team Scores
+    each val in scores
+      li.collection-item #{val.name}: #{val.score}
+  canvas#scoreChart(width=400, height=400)
+  script.
+    var scoreData = !{JSON.stringify(scores).replace(/<\//g, '<\\/')}
+    var ctx = document.getElementById("scoreChart");
+    var l = [];
+    for (let i = 0; i < scoreData[0].history.length; i++) l.push(i.toString());
+    var scoreChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: l,
+        datasets: scoreData.map((item) => { return {
+          label: item.name,
+          data: item.history,
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          spanGaps: false
+        }})
+      },
+      options: {}
+    });
