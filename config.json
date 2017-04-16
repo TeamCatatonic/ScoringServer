@@ -1,0 +1,29 @@
+{
+  "scoreIntervalMin": 20,
+  "scoreIntervalMax": 30,
+  "scoreDownPoints": 0,
+  "scoreSLAPoints": -5,
+  "scoreSLACounter": 5,
+  "scoreUpPoints": 1,
+  "teams": [{
+    "name": "Team1",
+    "computers": [{
+      "name": "192.168.1.2",
+      "services": [{
+        "type": "ftp",
+        "username": "Anonymous",
+        "password": ""
+      }]
+    }]
+  }, {
+    "name": "Team2",
+    "computers": [{
+      "name": "192.168.2.2",
+      "services": [{
+        "type": "ftp",
+        "username": "Anonymous",
+        "password": ""
+      }]
+    }]
+  }]
+}
