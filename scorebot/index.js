@@ -29,17 +29,21 @@ scorebot.check = function() {
         team.history.push(team.score);
         team.computers.forEach(function (computer) {
             computer.services.forEach(function (service) {
-                if (scoreCheckers[service.type] === null || scoreCheckers[service.type](Object.assign({ name: computer.name }, service))) {
-                    team.score += config.scoreUpPoints;
-                    service.consecutiveDown = 0;
-                } else {
-                    service.consecutiveDown++;
-                    if (service.consecutiveDown > config.scoreSLACounter) {
-                        team.score += config.scoreSLAPoints;
+                var callback = function(result) {
+                    if (result) {
+                        team.score += config.scoreUpPoints;
+                        service.consecutiveDown = 0;
                     } else {
-                        team.score += config.scoreDownPoints;
+                        service.consecutiveDown++;
+                        if (service.consecutiveDown > config.scoreSLACounter) {
+                            team.score += config.scoreSLAPoints;
+                        } else {
+                            team.score += config.scoreDownPoints;
+                        }
                     }
                 }
+                if (scoreCheckers[service.type] === null) callback(true);
+                else scoreCheckers[service.type](Object.assign({ name: computer.name }, service), callback);
             });
         });
     });
