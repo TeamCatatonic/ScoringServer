@@ -1,6 +1,6 @@
 {
-  "scoreIntervalMin": 20,
-  "scoreIntervalMax": 30,
+  "scoreIntervalMin": 2,
+  "scoreIntervalMax": 3,
   "scoreDownPoints": 0,
   "scoreSLAPoints": -5,
   "scoreSLACounter": 5,
@@ -8,21 +8,17 @@
   "teams": [{
     "name": "Team1",
     "computers": [{
-      "name": "192.168.1.2",
+      "name": "google.com",
       "services": [{
-        "type": "ftp",
-        "username": "Anonymous",
-        "password": ""
+        "type": "http"
       }]
     }]
   }, {
     "name": "Team2",
     "computers": [{
-      "name": "192.168.2.2",
+      "name": "github.com",
       "services": [{
-        "type": "ftp",
-        "username": "Anonymous",
-        "password": ""
+        "type": "http"
       }]
     }]
   }]

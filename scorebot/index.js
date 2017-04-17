@@ -33,8 +33,10 @@ scorebot.check = function() {
                     if (result) {
                         team.score += config.scoreUpPoints;
                         service.consecutiveDown = 0;
+                        service.currentlyUp = true;
                     } else {
                         service.consecutiveDown++;
+                        service.currentlyUp = false;
                         if (service.consecutiveDown > config.scoreSLACounter) {
                             team.score += config.scoreSLAPoints;
                         } else {

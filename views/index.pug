@@ -6,9 +6,9 @@ block content
       h4 Team Scores
     each team in scores
       li.collection-item #{team.name}: #{team.score}
-        each computer in team
-          each service in computer
-            span(style={color: (service.currentlyUp ? "#4CAF50" : "#F44336")}) #{computer.name}/#{service.type}
+        each computer in team.computers
+          each service in computer.services
+            span(style={color: (service.currentlyUp ? "#4CAF50" : "#F44336")}) &nbsp;#{service.type}:#{computer.name}
   canvas#scoreChart(width=400, height=400)
   script.
     var scoreData = !{JSON.stringify(scores).replace(/<\//g, '<\\/')};

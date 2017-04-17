@@ -7,7 +7,7 @@ checker.ftp = function(data, callback) {
 }
 
 checker.http = function(data, callback) {
-    request(data.name, function (error, response, body) {
+    request("http://" + data.name, function (error, response, body) {
         if (error) return callback(false);
         if (body) return callback(true);
         return callback(false);
